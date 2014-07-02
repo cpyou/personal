@@ -1,0 +1,4 @@
+本程序运行选装openerp-client-lib
+使用命令：
+sudo easy_install openerp-client-lib
+
