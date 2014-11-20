@@ -27,9 +27,9 @@ scp -r $bak_attach_dir $backup_server:/mnt/backup/pfgj_stj/openerp/
 
 finish_time=`date +%F-%H:%M:%S`
 echo $finish_time "备份成功！" | tee -a $PGLOGDIR
-echo "备份数据库名：$OF" | tee -a $PGLOGDIR
 echo "备份代码名：$bak_addons" | tee -a $PGLOGDIR
 echo "备份附件：$bak_attach_dir" | tee -a $PGLOGDIR
+echo "备份数据库名：$OF.bz2" | tee -a $PGLOGDIR
 
 echo "删除大于60天的备份" | tee -a $PGLOGDIR
 # 删除大于60天的备份
