@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- 文件共享根目录 -->
+        <record model="document.directory" id="stj_dir_root">
+            <field name="name">root</field>
+            <field name="user_id" eval="False"/>
+            <field name="ressource_id">0</field>
+            <field name="is_root" eval="True"/>
+            <field name="personal_active" eval="True"/>
+        </record>
+
+
+    </data>
+</openerp>
