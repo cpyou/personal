@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- 文件共享 -->
+        <record model="ir.ui.view" id="view_stj_document_directory_form">
+	        <field name="name">document.directory</field>
+	        <field name="model">document.directory</field>
+	        <field name="arch" type="xml">
+	            <form string="Directories" col="4" version="7.0">
+	                <sheet>
+		                <group col="4">
+		                    <field name="name" string="名称"/>
+		                    <field name="parent_id" string="父目录" required="1" domain="[('personal_active', '=', True)]"
+                                widget="f_m2o" options="{'create_edit':false,'create':false,'no_open':true}"/>
+		                    <field name="user_id" string="所有者" widget="f_m2o" options="{'create_edit':false,'create':false,'no_open':true}"/>
+		                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+		                    <field name="is_root" groups="base.group_system"/>
+                            <field name="personal_active" groups="base.group_system"/>
+		                </group>
+		                <notebook colspan="4" invisible="1">
+		                <page string="Definition">
+		                    <group string="Directory Type" colspan="4">
+		                        <field name="type"/>
+		                    </group>
+		                    <group col="4" attrs="{'invisible': [('type','!=','ressource')]}">
+		                        <field name="ressource_type_id"  on_change="onchange_content_id(ressource_type_id)"
+		                            attrs="{'required': [('type','=','ressource')] }"/>
+		                        <newline/>
+		                        <field name="resource_field"     domain="[('model_id','=',ressource_type_id), ('ttype', 'in', ('char', 'selection', 'date', 'datetime'))]"/>
+		                        <field name="ressource_tree"/>
+		                        <newline/>
+		                        <field name="domain" attrs="{'required': [('type','=','ressource')], 'readonly': [('type','=','static')]}"/>
+		                    </group>
+		                    <group col="4">
+		                        <field name="ressource_parent_type_id"/>
+		                        <field name="ressource_id" readonly="1"/>
+		                    </group>
+		                    <group col="2" attrs="{'invisible': [('type','!=','ressource'),('ressource_parent_type_id','=',False)]}">
+		                        <field name="resource_find_all"/>
+		                    </group>
+		
+		                </page>
+		                <page string="Generated Files" groups="base.group_no_one">
+		                    <label colspan="4" string="For each entry here, virtual files will appear in this folder." />
+		                    <field name="content_ids" nolabel="1" colspan="4" >
+		                        <form string="Contents">
+		                            <group col="4">
+		                                <field name="name"/>
+		                                <field name="sequence"/>
+		                                <field name="prefix"/>
+		                                <field name="suffix"/>
+		                                <field name="extension"/>
+		                                <field name="include_name"/>
+		                                <separator string="PDF Report" colspan="4"/>
+		                                <field name="report_id" domain="[('model_id','=',parent.ressource_type_id)]"/>
+		                            </group>
+		                        </form>
+		                        <tree string="Contents">
+		                            <field name="sequence" string="Seq."/>
+		                            <field name="name"/>
+		                            <field name="suffix"/>
+		                            <field name="extension"/>
+		                        </tree>
+		                    </field>
+		                </page>
+		                <page string="Dynamic context" groups="base.group_no_one">
+		                    <label colspan="4" string="Define words in the context, for all child directories and files" />
+		                    <field name="dctx_ids" nolabel="1" colspan="4">
+		                        <tree string="Fields" editable="bottom">
+		                            <field name="field"/>
+		                            <field name="expr"/>
+		                        </tree>
+		                        <form string="Fields">
+		                            <group col="4">
+		                                <field name="field"/>
+		                                <field name="expr"/>
+		                            </group>
+		                        </form>
+		                    </field>
+		                </page>
+		                <page string="Security">
+		                    <label colspan="4" string="Only members of these groups will have access to this directory and its files." />
+		                    <label colspan="4" string="These groups, however, do NOT apply to children directories, which must define their own groups." />
+		                    <field name="group_ids" colspan="4" nolabel="1"/>
+		                </page>
+		                </notebook>
+		            </sheet>
+	            </form>
+	        </field>
+	    </record>
+                  
+        <record model="ir.ui.view" id="view_stj_document_directory_search">
+            <field name="name">document.directory.search</field>
+            <field name="model">document.directory</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="signed_id" version="7.0">
+                        <group string="请选择分组">
+                            <filter name="personal_active" string="有效" domain="[]" icon="terp-project"
+                                    context="{'group_by':'personal_active'}"/>
+                        </group>
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_stj_document_directory_tree">
+        <field name="name">document.directory</field>
+        <field name="model">document.directory</field>
+        <field name="field_parent">child_ids</field>
+        <field name="arch" type="xml">
+            <tree string="Directories" toolbar="1">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="user_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="create_date"/>
+                <field name="write_date"/>
+                <field name="personal_active" groups="base.group_system"/>
+            </tree>
+        </field>
+    </record>
+                  
+        <!-- 目录结构 action -->
+        <record model="ir.actions.act_window" id="action_stj_document_directory_tree">
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="name">目录结构</field>
+	        <field name="res_model">document.directory</field>
+	        <field name="view_type">tree</field>
+	        <field name="view_id" ref="view_stj_document_directory_tree"/>
+	        <field name="search_view_id" ref="view_stj_document_directory_search"/>
+	        <field name="domain">[('personal_active','=',True),('is_root','=',True)]</field>
+	    </record>
+        <menuitem name="文件共享" parent="menu_stj_fund_document_share_top" sequence="1"
+                  id="menu_stj_fund_document_directory_tree" action="action_stj_document_directory_tree"/>
+                  
+        <record model="ir.actions.act_window" id="action_stj_document_directory_form">
+	        <field name="name">目录</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">document.directory</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="view_id" ref="view_stj_document_directory_form"/>
+	        <field name="search_view_id" ref="view_stj_document_directory_search"/>
+	        <field name="domain">[('personal_active','=',True)]</field>
+	    </record>
+	    <record id="action_dir_view1" model="ir.actions.act_window.view">
+	        <field eval="10" name="sequence"/>
+	        <field name="view_mode">tree</field>
+	        <field name="view_id" ref="view_stj_document_directory_tree"/>
+	        <field name="act_window_id" ref="action_stj_document_directory_form"/>
+	    </record>
+<!--	    <record id="action_dir_view2" model="ir.actions.act_window.view">
+	        <field eval="20" name="sequence"/>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="view_document_directory_form"/>
+	        <field name="act_window_id" ref="action_document_directory_form"/>
+	    </record>-->
+        <menuitem name="目录" parent="menu_stj_fund_document_share_top" sequence="1"
+                  id="menu_stj_fund_document_directory_form" action="action_stj_document_directory_form"/>
+                  
+        <record model="ir.ui.view" id="view_stj_document_file_form">
+	        <field name="name">ir.attachment</field>
+	        <field name="model">ir.attachment</field>
+	        <field name="type">form</field>
+	        <field name="arch" type="xml">
+	            <form string="Attachments" version="7.0">
+                   <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group string="Attached To">
+                        <field name="res_model" invisible="1"/>
+                        <field name="res_id" invisible="1"/>
+                        <field name="res_name" invisible="1"/>
+                        <field name="parent_id" domain="[('personal_active', '=', True)]"/>
+                		<field name="partner_id" invisible="1"/>
+                        <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                    </group>
+                    <group string="Data">
+                        <field name="type" invisible="1"/>
+                        <field name="datas" filename="datas_fname" attrs="{'invisible':[('type','=','url')]}"/>
+                        <field name="datas_fname" invisible="1" attrs="{'invisible':[('type','=','url')]}" class="oe_inline oe_right"/>
+                        <field name="url" widget="url" attrs="{'invisible':[('type','=','binary')]}"/>
+                        <field name="user_id"/>
+                    </group>
+                    <group groups="base.group_no_one" string="History">
+                        <label for="create_uid" string="Creation"/>
+                        <div name="creation_div">
+                            <field name="create_uid" readonly="1" class="oe_inline"/> on 
+                            <field name="create_date" readonly="1" class="oe_inline"/>
+                        </div>
+                        <label for="write_uid" string="Modification"/>
+		                <div>
+		                    <field name="write_uid" readonly="1" class="oe_inline"/> on 
+		                    <field name="write_date" readonly="1" class="oe_inline"/>
+		                </div>
+                    </group>
+                    <group name="description_group" string="Description" colspan="4">
+                        <field name="description" nolabel="1"/>
+                    </group>
+	                <group string="Indexed Content" colspan="4">
+	                    <field name="index_content" nolabel="1"/>
+	                </group>
+                  </sheet>
+                </form>
+	        </field>
+	    </record>
+
+        <record model="ir.ui.view" id="view_stj_document_file_tree">
+        <field name="name">ir.attachment</field>
+        <field name="model">ir.attachment</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree colors="blue:type in ('url',)" string="Attachments">
+                <field name="name"/>
+                <field name="parent_id" />
+                <field name="user_id"/>
+                <field name="company_id"/>
+                <field name="create_date" groups="base.group_no_one"/>
+                <field name="write_date" groups="base.group_no_one"/>
+                <field name="partner_id"/>
+                <field name="type" invisible="1"/>
+            </tree>
+
+        </field>
+    </record>
+                  
+        <record model="ir.actions.act_window" id="action_stj_document_file_directory_form">
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">ir.attachment</field>
+	        <field name="name">目录</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="domain">[('parent_id','child_of',active_id)]</field>
+	        <field name="context">{'parent_id':active_id}</field>
+	    </record>
+
+        <record id="action_stj_document_file_directory1" model="ir.actions.act_window.view">
+	        <field eval="10" name="sequence"/>
+	        <field name="view_mode">tree</field>
+	        <field name="view_id" ref="view_stj_document_file_tree"/>
+	        <field name="act_window_id" ref="action_stj_document_file_directory_form"/>
+	    </record>
+	    <record id="action_stj_document_file_directory2" model="ir.actions.act_window.view">
+	        <field eval="20" name="sequence"/>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="view_stj_document_file_form"/>
+	        <field name="act_window_id" ref="action_stj_document_file_directory_form"/>
+	    </record>
+	
+	    <record model="ir.values" id="ir_action_stj_document_file_directory_form">
+	        <field name="key2" eval="'tree_but_open'"/>
+	        <field name="model" eval="'document.directory'"/>
+	        <field name="name">Browse Files</field>
+	        <field name="value" eval="'ir.actions.act_window,%d'%action_stj_document_file_directory_form"/>
+	    </record>
+    </data>
+</openerp>
