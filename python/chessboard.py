@@ -41,10 +41,11 @@ def action_method(start_point, end_point, key, paths, actions):
         new_start = (x, y)
         paths.append(new_start)
         if new_start == end_point:
+            if key[0] in paths:
+                paths = paths[paths.index(key[0]) + 1:]
             if key in res.keys():
                 if len(paths) < len(res[key]):
-                    if key[0] in paths:
-                        res[key] = paths[paths.index(key[0]) + 1:]
+                    res[key] = paths
             else:
                 res[key] = paths
 
@@ -85,6 +86,8 @@ def main():
     else:
         main()
 
-main()
+
+if __name__ == "__main__":
+    main()
 
 
