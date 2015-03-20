@@ -9,14 +9,6 @@ print '''
           开始输入·····
       '''
 
-x = int(input('请输入x：'))
-y = int(input('请输入y：'))
-N = int(input('请输入N：'))
-#TODO 对输入内容进行限定
-start = (x, y)
-end = (N, N)
-print '起始坐标%s;\n终点坐标%s' % (start, end)
-
 #此处可简化
 up_to_right_up = (1, 2)
 up_to_left_up = (-1, 2)
@@ -35,25 +27,64 @@ actions = [
 ]
 
 i = 0
+res = {}  # 记录随机产生的最短路径，以便使路径最短化
 
 
-def action_method(start, end, actions):
-    if start == end:
+def action_method(start_point, end_point, key, paths, actions):
+    if start_point == end_point:
         print '已经在原来位置'
-        return True
     num = random.randint(0, 7)
     method = actions[num]
-    x = start[0] + method[0]
-    y = start[1] + method[1]
+    x = start_point[0] + method[0]
+    y = start_point[1] + method[1]
     if x > 0 and x < 9 and y > 0 and y < 9:
         new_start = (x, y)
-        print new_start
-        if new_start == end:
-            print '到达目标'
-            return True
-        else:
-            action_method(new_start, end, actions)
-    else:
-        action_method(start, end, actions)
+        paths.append(new_start)
+        if new_start == end_point:
+            if key in res.keys():
+                if len(paths) < len(res[key]):
+                    if key[0] in paths:
+                        res[key] = paths[paths.index(key[0]) + 1:]
+            else:
+                res[key] = paths
 
-action_method(start, end, actions)
+            for path_point in res[key]:
+                print path_point
+            print '到达目标'
+        else:
+            action_method(new_start, end_point, key, paths, actions)
+    else:
+        action_method(start_point, end_point, key, paths, actions)
+
+
+def start():
+    x = int(input('请输入x：'))
+    y = int(input('请输入y：'))
+    N = int(input('请输入N：'))
+    #TODO 对输入内容进行限定
+    start_point = (x, y)
+    end_point = (N, N)
+    key = (start_point, end_point)
+    print '起始坐标%s;\n终点坐标%s' % key
+    paths = []
+    action_method(start_point, end_point, key, paths, actions)
+    
+
+def end():
+    return True
+
+
+def main():
+    print """ 输入S开始，输入E结束"""
+    a = raw_input('请输入:')
+    if a == 'S':
+        start()
+        main()
+    elif a == 'E':
+        end()
+    else:
+        main()
+
+main()
+
+
