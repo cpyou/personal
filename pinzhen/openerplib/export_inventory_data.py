@@ -6,20 +6,23 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-# HOST = 'erp.pzfresh.com'
-# PORT = 80
-# DB = 'pzfresh_produce_db'
-# USER = 'admin'
-# PASS = 'wlcmima159632'
+program_start_time = datetime.datetime.now()
 
-HOST = '127.0.0.1'
+# HOST = 'erp.pzfresh.com'
+HOST = '120.24.225.102'
 PORT = 8069
 DB = 'pzfresh_produce_db'
 USER = 'admin'
-PASS = 'admin999'
+PASS = 'wlcmima159632'
 
-start_time = '2015-12-31 00:00:00'
-end_time = '2015-12-31 23:59:59'
+# HOST = '127.0.0.1'
+# PORT = 8069
+# DB = 'pzfresh_produce_db'
+# USER = 'admin'
+# PASS = 'admin999'
+
+start_time = '2016-01-15 00:00:00'
+end_time = '2016-01-15 23:59:59'
 
 
 def adjust_time_use_hours(input_time, hours):
@@ -86,15 +89,24 @@ for location_val in location_vals:
         row = 1
 
         print len(inventory_ids)
-        for inventory_id in inventory_ids:
-            inventory_val = inventory_obj.read(inventory_id, ['name', 'line_ids', 'date', 'write_date'])
-            for line_id in inventory_val['line_ids']:
-                line = inventory_line_obj.read(line_id, ['product_id', 'theoretical_qty', 'product_qty'])
-                product_val = product_obj.read(line['product_id'][0], ['product_tmpl_id', 'standard_price'])
-                template_val = template_obj.read(product_val['product_tmpl_id'][0], ['product_spec_value_id',
-                                                                                     'product_spec_id',
-                                                                                     'categ_id'])
+        inventory_vals = inventory_obj.read(inventory_ids, ['name', 'line_ids', 'date', 'write_date'])
+        for inventory_val in inventory_vals:
+            lines = inventory_line_obj.read(inventory_val['line_ids'], ['product_id', 'theoretical_qty', 'product_qty'])
+            # 获取product数据字典
+            product_ids = [line['product_id'][0] for line in lines]
+            product_res = product_obj.read(product_ids, ['product_tmpl_id', 'standard_price'])
+            product_vals = {}
+            [product_vals.update({i['id']: i}) for i in product_res]
 
+            # 获取template数据字典
+            template_ids = [i['product_tmpl_id'][0] for i in product_res]
+            template_res = template_obj.read(template_ids, ['product_spec_value_id', 'product_spec_id', 'categ_id'])
+            template_vals = {}
+            [template_vals.update({i['id']: i}) for i in template_res]
+
+            for line in lines:
+                product_val = product_vals[line['product_id'][0]]
+                template_val = template_vals[product_val['product_tmpl_id'][0]]
                 product_name = line['product_id'][1]
                 if product_name in work_products:
                     line_data = work_data[work_products.index(product_name)]
@@ -119,7 +131,7 @@ for location_val in location_vals:
                     }
                     work_data.append(line_data)
                     work_products.append(line_data['product_name'])
-                print row, line_data
+                # print line_data
         for line_data in work_data:
             line_data['diff_qty'] = line_data['product_qty'] - line_data['theoretical_qty']
             line_data['diff_amount'] = line_data['diff_qty'] * line_data['standard_price']
@@ -127,9 +139,11 @@ for location_val in location_vals:
 
             for key in work_keys:
                 worksheet.write(row, work_keys.index(key), line_data[key])
-            print row, line_data
+            # print row, line_data
             row += 1
 workbook.close()
+program_end_time = datetime.datetime.now()
+print '用时:%s' % str(program_end_time - program_start_time)
 print '完成'
 #     workflow_log = conn.get_model('workflow.logs')
     # log_id = workflow_log.create(values)
