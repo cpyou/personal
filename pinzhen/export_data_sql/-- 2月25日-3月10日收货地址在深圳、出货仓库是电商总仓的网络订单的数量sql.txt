@@ -1,0 +1,32 @@
+-- 收货地址在深圳、出货仓库是电商总仓的网络订单的数量sql
+select 
+    wo.name 单号,
+    wo.web_name 网单号,
+    wo.amount_total 实收总金额,
+    wo.order_date 下单时间,
+    wo.stock_order 实际发货时间,
+    rp1.name 客户,
+    rp.name 收货人,
+    rp.street 详细地址,
+    rp.city 城市,
+    case wo.state
+         when 'draft' then '新建'
+         when 'confirmed' then '已确认'
+         when 'prestock' then '待发货'
+         when 'stock' then '备货中'
+         when 'delivery' then '配送中'
+         when 'recieved' then '已收货'
+         when 'done' then '已完成'
+         when 'cancel' then '取消'
+         when 'saleafter' then '已申请售后'
+         when 'suspend' then '挂起'
+         when 'reject' then '拒签'
+     end as 状态
+from web_order wo
+join res_partner rp on rp.id = wo.address_id 
+join res_partner rp1 on rp1.id = wo.partner_id 
+where 
+    wo.shipment_warehouse_id = 1 
+    and rp.city ~ '深圳'
+order by wo.order_date
+;

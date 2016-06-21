@@ -1,0 +1,651 @@
+-- 商品水果类比较表sql
+-- Table: compare_product
+
+DROP TABLE IF EXISTS compare_product CASCADE;
+
+-- 创建数据表
+CREATE TABLE compare_product
+(
+    id serial NOT NULL,
+--    bn character varying(14), -- 商品编码
+--    good_name character varying, -- 商品名称
+    barcode character varying, -- 商品条形码
+    sale_unit character varying, -- 销售单位
+    sale_price character varying, -- 销售单价
+--    produce_region character varying, -- 产地
+--    rank character varying, -- 等级
+    old_bn character varying -- 商品老编码
+
+);
+
+-- excel 数据样式： ="insert into compare_product (bn,good_name,barcode,sale_unit,sale_price,produce_region,rank,old_bn)  values('"&A68&"','"&B68&"','"&C68&"','"&E68&"','"&T68&"','"&M68&"','"&N68&"','"&V68&"');"
+
+-- 插入数据
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9421017730567','瓶','22','51006001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9421017730949','瓶','58','51006002');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901209213830','支','7.5','51005801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6947011910031','8*100g','16','51001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924810800817','3*100g','13.5','51002401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924810800916','3*100g','13.5','51002501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924810801012','3*100g','13.5','51002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924810800015','200ml','6.8','51003101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924810800619','720ml','19.5','51003102');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500718051','盒','96','51005101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500029850','组','24','51005201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500029867','组','24','51005301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500023469','组','28','51005401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500023483','组','28','51005501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500718068','盒','99','51005601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924810802002','瓶','9.9','51005901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992103280','杯','4.8','51006701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992102795','杯','5','51006801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992100418','支','5','51006901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992100425','支','5','51007001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992103280','瓶','4.8','51006101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992102795','瓶','5','51006201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992100418','瓶','5','51006301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6907992100425','瓶','5','51006401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6936003080715','组','20','51008701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6936003080739','组','24','51008801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6936003080753','组','27','51008901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6928758789609','组','10.9','51003601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6936003080760','瓶','6','51009001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6936003080777','瓶','6','51009101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6936003080784','瓶','6','51009201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3228020490336','包','19','41000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9415007000518','包','20','41000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('41001001','杯','1','41001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('41001101','杯','1','41001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9415007302070','块','18','41001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3228020355741','块','24','41001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400777','盒','15','41003801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400333','盒','15','41003901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400340','盒','15','41004001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400616','袋','19.5','41004101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400722','袋','19.5','41004201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400791','袋','19.5','41004301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400876','杯','6','41004401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400951','杯','6','41004501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922477400883','杯','6','41004601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5011038 134112','块','35','51007401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5011038 133801','块','35','51007501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('0767707 001326','块','38','51007601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('90276101','盒','16','51007701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3073781061703','盒','28.8','51007101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('51007201','盒','28.8','51007201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('51007301','盒','28.8','51007301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920180266154','瓶','5.5','54004901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920180266635','瓶','5.5','54005001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920180266383','瓶','21.5','54004902');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920180266673','瓶','21.5','54005002');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300639500041','盒','18','51000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('93639101','支','6.5','51000102');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300639400013','盒','18','51000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4100290007096','盒','19','51001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500111319','组','13.8','51003801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045507111107','盒','55','51003901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500111319','盒','4.6','51006201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5016860122177','支','16','51007901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5016860150224','支','16','51008001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5016860175678','支','16','51008101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5016860251228','支','5.5','51008201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4025839037597','盒','13.5','51008301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4025839037573','盒','13.5','51008401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4025839037559','盒','13.5','51008501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5016860648219','盒','28','51008601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300639500126','盒','6.5','51007401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6925099468194','包','7.8','69000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6925099468200','包','7.8','69001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3251099803677','瓶','75','56000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3251093603211','瓶','88','56000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3251092004361','瓶','138','56000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3251091306855','瓶','198','56000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3296327541433','瓶','188','56000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3296327541129','瓶','558','56001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3535923001003','瓶','199','56001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3535923020004','瓶','258','56001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3536650501002','瓶','228','56001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3536650301008','瓶','788','56001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('087000301351','瓶','290','56001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410036002015','瓶','168','56001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410036001094','瓶','178','56001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('029147139985','瓶','138','56001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('029147139992','瓶','138','56001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3662386000141','瓶','159','56002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7804360011095','瓶','148','56002401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9313460003360','瓶','268','56002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9311659000626','瓶','398','56002701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','瓶','3000','56002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9419227007012','瓶','248','56002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5606167555565','瓶','99','56003401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('56003501','瓶','668','56003501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('56003601','瓶','660','56003601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4904070002239','瓶','158','56000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4904070050216','瓶','218','56000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4962656158312','罐','10','56000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4962656191418','罐','10','56000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4004591037120','罐','9.9','56002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4004591037939','罐','9.9','56002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4015042102755','罐','9.9','56002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5701598030961','罐','9.9','56003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5701598036192','罐','9.9','56003101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5701598036413','罐','9.9','56003201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4004315001383','支','29.5','56003301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555614202582','支','5.9','54000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555614202599','支','5.9','54000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555614202605','支','5.9','54000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902494130170','瓶','14.9','54001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902494130194','瓶','14.9','54001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555614200168','瓶','6','54001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555614200182','瓶','6','54001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555614200205','瓶','6','54001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('832423000400','瓶','15','54002501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('832423000417','瓶','15','54002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('832423000059','瓶','15','54002701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888200707019','罐','5','54003901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888200900274','罐','5','54004001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888200900175','罐','5','54004101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850548006987','瓶','7.5','54004401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850548007007','瓶','7.5','54004501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850548007014','瓶','7.5','54004601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850548007038','瓶','7.5','54004701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850548006994','瓶','7.5','54004801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920202888883','罐','5.5','82100901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920202866737','罐','8','82101501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8018005301291','瓶','16','54005101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8018005301222','瓶','16','54005201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8018005301277','瓶','16','54005301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8018005301239','瓶','16','54005401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6947012800010','瓶','4.5','52000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3179730109295','瓶','12','61004001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3179730010560','瓶','12','61004201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3179730010591','瓶','12','61004301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7613035075443','瓶','12','61006801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8886336940126','瓶','16','54000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8886336940102','瓶','16','54000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8886336940157','瓶','16','54000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8886336940119','瓶','16','54000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888265000612','盒','19.5','54001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888265001275','盒','19.5','54001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888265001398','盒','21.5','54001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888265000629','盒','19.5','54002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5290010002131','盒','17.5','54003201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5290010000854','盒','17.5','54003301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5290011002550','盒','17.5','54003401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5290011003014','盒','17.5','54003501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4891599338393','罐','3.5','82105802');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4891599366808','瓶','4','82105901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405852','瓶','38','53001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405869','瓶','58','53001902');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405210','瓶','62','53002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405234','瓶','62','53002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405852','瓶','38','53001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405869','瓶','58','53001902');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405210','瓶','62','53002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809269405234','瓶','62','53002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4260157571556','瓶','39','53001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4260157571549','瓶','48','53001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4260157571624','瓶','95','53001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','瓶','5','42000202');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','瓶','5','42000402');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','瓶','8','42000502');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('05150024137','罐','18.5','43006901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('051500000793','罐','33','43007001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('051500000953','罐','30','43007101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('051500000847','罐','30','43007101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6958444710426','包','15.8','66000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6958444710457','包','15.8','66000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6958444710440','包','13.8','66000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6958444710419','包','9.5','66000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6958444710501','包','12.8','66000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6958444710433','包','13.8','66000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000393','罐','18.8','66000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000362','罐','18.8','66000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000652','罐','16.8','66000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000669','罐','13.8','66001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000676','罐','13.8','66001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000683','罐','13.8','66001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000690','罐','16.8','66001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000706','罐','18.8','66001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000881','罐','15.8','66001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8691321301239','瓶','96','43004301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6941499114691','瓶','99.9','63002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410134208005','瓶','72','63000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410134209002','瓶','48','63000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('691616816554','','139.9','63001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920487400237','盒','78','63001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920487400152','盒','158','63001702');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6941499100038','支','28.5','63002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6941499101233','瓶','35.8','63002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6941499114691','罐','89','62002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6949337400067','包','32.8','62001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6909462203216','袋','45','62000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6949337400128','包','32.8','62001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6949470400450','包','79','62001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6949337400067','包','32.8','62001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6919839601057','袋','45.5','62001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6937487000244','包','49.9','62002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6937487000046','包','10','62002002');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','袋','46.8','62002003');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935766500133','','0','63001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6939821500663','包','32.8','82003501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4710109770853','包','26.8','77001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4710109978846','包','28.8','77002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943575500938','包','12.5','77002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943515500815','包','12.5','77002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001200139059','袋','14.9','64001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001200139196','袋','15.5','64002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001200139509','袋','15.5','64002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001200139615','袋','14.9','64002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001200023808','袋','15.5','64002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6930860310060','包','10.2','68000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4718287592007','包','5.5','64002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4718287592014','包','5.5','64002701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4718287592021','包','5.5','64002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001200139035','包','14.9','64002501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920088000263','罐','53.8','67000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','42.5','67000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','36.8','67000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','39.8','67000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','25.5','67000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','18.8','67000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','13.8','67000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6958362103676','包','38','67001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('051000036872','罐','16.5','73000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556191062378','罐','14.8','73000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556191062361','罐','14.8','73001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('837038000050','瓶','33.9','43003601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('837038000098','瓶','32','43003701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6949909050041','包','7.2','43005001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6941499113908','包','8','43005101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6949909050140','包','8','43005701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902402653036','支','19','61005201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902402653166','支','19','61005301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902402853887','盒','36','61005601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902402853900','盒','36','61005701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414001929','瓶','28','61006101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414003688','瓶','28','61006201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414001738','瓶','52','61006301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414041819','瓶','32','61006401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414040348','瓶','32','61006501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414041871','瓶','32','61006601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414040515','瓶','32','61006701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80273684','瓶','25','61006901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80273660','瓶','25','61007001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80273561','瓶','25','61007101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9001414001745','瓶','52','61007201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4012200160763','瓶','19','43000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('40804927','瓶','16','43000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300462016320','罐','38','43002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300462016382','罐','38','43002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935953361486','袋','8','43002701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935953361493','袋','8','43002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935953399984','袋','16.8','43002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935953399991','袋','18.9','43003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('078024927214','瓶','20.9','43003101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('078024300390','瓶','20.9','43003201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('078024301113','瓶','17','43003301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('078024920970','瓶','16.8','43003401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('078024906103','瓶','16.8','43003501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8003395007878','瓶','25.9','43004001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8003395007892','瓶','25.9','43004101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8003395045504','瓶','25.9','43004201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850511311162','瓶','13.5','43004401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850511321482','瓶','14.3','43004501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850511311100','瓶','13.5','43004601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902087120069','瓶','22','43004901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850511321499','瓶','25.9','43006201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80525387','罐','24.9','43006301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80525424','罐','24.9','43006401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80525288','罐','24.9','43006501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80525462','罐','24.5','43006601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80525448','罐','32.9','43006701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8850289001838','瓶','18.5','61000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4901515118807','瓶','26','61000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('011210601079','支','17','61001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('011210630444','支','15','61001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9310012021049','瓶','33','61002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('40804880','瓶','20','61004501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902377127211','瓶','28','61005801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4972370115737','瓶','39','61005901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902402652770','支','19','61006001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3265475015004','支','29.8','43007701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('078024302110','罐','19','43007501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8003395045702','瓶','23.5','43007801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8003395007861','瓶','23.5','43007901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437002939','袋','16','55000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437002960','袋','16','55000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437009679','袋','16','55000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437011801','包','16','55000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4716206902654','包','19','55001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4716206902616','包','19','55001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4716206902647','包','19','55001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4711269686046','包','15','78000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4711269686244','包','15','78000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4711269686237','包','15','78000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556852681306','盒','10.8','78002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556852681320','盒','10.8','78002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556852681337','盒','10.8','78003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4250837300293','盒','25.8','79000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4250837300262','盒','25.8','79000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('880 927538 182 9','包','9.9','78004401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809395340102','袋','8.8','75000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4017602700029','盒','15','75000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4017602700111','盒','15','75000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4017602700463','盒','15','75000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4017602700722','盒','15','75001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555737301438','包','5.5','75001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555737301414','包','5.5','75001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4712758863023','包','4.9','75001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4712758863061','包','4.9','75001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4712758863009','包','4.9','75001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4712758863047','包','4.9','75001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4016600100923','盒','10.8','75002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4016600101050','盒','10.8','75002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4016600101036','盒','10.8','75002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4016600101067','盒','10.8','75002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4016600100992','盒','10.8','75002501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437001840','组','7.8','55001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556247521507','盒','16.8','75002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556247523068','盒','16.8','75002701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556247525840','盒','16.8','75002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410740006125','袋','15','75002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437003646','袋','9.8','55001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437002311','袋','9.8','55001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296038301','袋','18.9','78003801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296038387','袋','18.9','78003901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296038462','袋','6.8','78004001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296038271','袋','6.8','78004201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296038288','袋','8.8','78004301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4895058315680','盒','29.5','76001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4895058315673','盒','29.5','76001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6921781705004','罐','59','76003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('077330342377','盒','27.8','76003401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('077330342384','罐','27.8','76003501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922957404493','盒','14.5','76003601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6922957404509','盒','14.5','76003701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000350000585','盒','19','76004301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000350001919','盒','22','76004401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6291106490381','袋','12','76004501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6291106490329','袋','12','76004601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6291106490343','袋','12','76004801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4895058315512','罐','29.9','76005401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4895058315697','罐','33','76005501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555419202671','盒','10.8','78003201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555419202695','盒','10.8','78003301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8032755322610','袋','22','78003401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8032755321194','盒','22','78003501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8032755322665','盒','22','78003601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8032755322658','盒','22','78003701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556296131870','罐','15','78001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556296131863','罐','15','78001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556923002924','罐','13.8','78002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556923002931','罐','13.8','78002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556923002979','罐','13.8','78002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795021213','罐','43','72000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795021220','罐','43','72000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795025549','罐','43','72000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795520952','罐','36','72000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795726125','罐','49','72000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795051357','罐','138','72000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795071652','罐','138','72000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888112010382','罐','32','72000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888112020169','罐','32','72001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888112100199','罐','18','72001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888112060103','罐','18','72001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888112150095','罐','18','72001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888112460071','罐','49','72001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('770795520938','罐','36','72002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935953400079','包','148','77000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296034747','罐','14.9','77000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296034785','罐','14.9','77000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296034723','罐','14.9','77001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('41143095973','租','68','77001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901513900082','袋','45','61007301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901513889424','袋','40.5','61007302');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901513889578','袋','23.5','61007401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901513889127','袋','23.5','61007501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901513889677','袋','18','61007601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901513888755','袋','45','61007701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943085400201','袋','35','61007801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410134015979','盒','168','63000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','份','108.8','63002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927216910012','包','4.5','54005501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927216910029','瓶','4.5','54005601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927216910036','瓶','4.5','54005701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927216910043','瓶','4.5','54005801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('898999000503','瓶','25','54005901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943515500860','包','4.9','64002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943515500891','包','4.9','64003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300639500126','盒','6.9','51007401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3265475015004','瓶','29.8','43007701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943589601005','组','16.5','41004701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943589601012','组','16.5','41004801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6943589601029','组','16.5','41004901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556437002984','袋','16','55000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3021768203615','盒','32.5','55000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3021768203622','盒','32.5','55000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7610023050345','盒','33','71000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7610023050215','袋','48','71000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7610023002191','盒','33','71001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7610023002207','盒','33','71001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4713398080009','盒','128','71001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('038527590322','罐','49','71001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('038527590308','罐','49','71001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('680474357000','罐','39.8','72001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('680474357048','罐','39.8','72002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('680474357024','罐','39.8','72002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('680474357031','罐','39.8','72002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927392221438','袋','52.8','72002401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927392221476','罐','60.8','72002501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927392221452','罐','63','72002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927392222381','罐','48.8','72002701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927392222343','罐','28.8','72002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927392222350','罐','23.8','72002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927392224720','袋','38','72003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924840337253','包','35','72003201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924840338878','包','32.5','72003301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924840337376','包','25','72003401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6924840337260','包','53','72003501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296034327','盒','49','74000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8888296034242','盒','49','74000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555540000146','罐','27.8','74000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555540000177','罐','27.8','74000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555540000153','罐','27.8','74001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555540016321','盒','78.8','74001202');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555540016321','盒','78.8','74001203');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3290041000337','盒','68','74001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('74001401','盒','78','74001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7622400765100','盒','38','74001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410719010122','包','28','75000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410719011297','瓶','28','75000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410719002943','瓶','28','75000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5410381003067','盒','38','75001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000155667501','包','39','76000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000155707504','包','42','76000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000155587502','包','42','76000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('039047017962','包','29.5','76000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('039047017689','包','29.5','76001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('039047019164','包','29.5','76001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('039047054271','包','29.5','76001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410000002010','盒','32.5','76001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8436048417708','盒','19.5','76001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4895058315697','盒','29.5','76001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4715426666605','罐','34','76001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4715426666612','罐','34','76001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4715426666636','罐','34','76002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4715426666650','罐','34','76002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9331275004334','听','25.8','76003201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9331275004327','听','25.8','76003301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8054619270103','袋','16.8','76003801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8054619270110','袋','16.8','76003901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6291106490367','袋','12','76004701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555419201599','盒','53','76005001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6901365120010','袋','29','76005301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935953400024','包','39.8','77000102');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8801052774473','包','27.5','77000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('038900034061','包','13.5','77000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('038900034559','包','13.5','77000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('038900034467','包','19.5','77000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8886350067946','袋','19','77001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8886350067908','袋','19','77001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4710109770822','包','28.8','77001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809296888109','包','12','78000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809296881841','包','12','78000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809296888147','包','12','78000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8809296888123','包','12','78000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4901540400571','包','25','78000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8002085001257','桶','22','78001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8002085001264','桶','22','78001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('077330337342','罐','79.8','78001801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555116521167 ','包','15','78002401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555116521198 ','包','15','78002501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555116521174','包','15','78002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9555116521181','包','15','78002701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8857100390331','包','32','78004101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('70690271851','盒','138','77002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('78003101','包','3.2','78003101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('3228022070253','盒','10','41000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5740900832305','块','15','41002001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('5711953018428','盒','34','41002601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300639500102','组','39','51000104');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','箱','156','51000106');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4036300069450','盒','17','51000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4036300098290','支','6','51000702');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4007929150515','盒','17','51000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8886460377270','盒','6','51001102');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4100290007089','盒','19','51001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4002334115050','杯','8','51001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','28.8','51001402');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4002334115067','杯','8','51001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','28.8','51001502');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4002334115043','杯','8','51001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','28.8','51001602');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4002334115036','杯','8','51001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('','盒','28.8','51001702');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300639600383','盒','18','51002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500033482','瓶','12.8','51003701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('51003702','箱','99','51003702');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500111272','组','18','51004001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500111265','组','18','51004101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('404550011258','组','18','51004201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6928758789609','盒','46','51004301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500018083','杯','8','51004401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500018052','杯','8','51004501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500018069','杯','8','51004601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045506111252','盒','46','51006301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045506111269','盒','46','51006401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500718068','盒','78.8','51006501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4045500718068','盒','78.8','51006601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('043647010018','瓶','32','42000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('043647325013','瓶','36','42000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('043647160010','瓶','32','42000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('043647525017','瓶','65','42000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4012200194010','瓶','9','43000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4012200194225','瓶','9','43000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4012200383803','瓶','12','43000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('40804835','瓶','10','43000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300681170131','瓶','19','43001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9310012024248','瓶','18','43001901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9300681169722','瓶','19','43002401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('011210620513','支','15','61003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902402652800','支','16','61005401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902402853863','盒','29','61005501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('049000053128','瓶','12.9','43003801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('049000053135','瓶','12.9','43003901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80021926','瓶','8','52000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('80008620','瓶','8','52000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000070020580','罐','75','53000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000070011052','罐','65','53000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000070018877','罐','82','53000301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000070015456','罐','75','53000401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000070035935','罐','66','53000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8000070038820','罐','68','53000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7707211632077','瓶','76','53000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7707211631599','瓶','65','53000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('7707211631605','瓶','53','53001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8807920890887','瓶','48','53001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8807920890948','瓶','48','53001201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902179015570','瓶','13.8','53001501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902179015396','瓶','13.8','53001601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('4902179010223','瓶','13.8','53001701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410810010212','瓶','6.9','54002101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410810010205','瓶','6.9','54002201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410810009735','瓶','6.9','54002301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8410810010229','瓶','6.9','54002401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556474123659','听','6.8','54002801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556474123635','听','6.8','54002901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556474123642','听','6.8','54003001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556474125219','听','6.8','54003101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556007001164','盒','5.5','54003601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556007077015','盒','5.5','54003701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('9556007001232','盒','5.5','54003801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8003753900490','罐','125','61003201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8003753900469','罐','125','61003301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8076802085936','袋','18','61004601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6920808800067','盒','168','62000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6927609320015','盒','138','62000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('693748700015','袋','45','62001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6934923100018','瓶','110','63000901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6934923100025','盒','240','63001001');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6934923100032','盒','435','63001101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935766550039','瓶','125','63001301');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('6935766500119','袋','0','63001401');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001250120113','袋','18','64000101');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001250120120','袋','18','64000201');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001250120076','袋','18','64000501');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001250120939','袋','19','64000601');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001250152336','袋','27','64000701');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('8001250120502','袋','19','64000801');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('76004901','盒','3400','76004901');
+insert into compare_product (barcode,sale_unit,sale_price,old_bn)  values('76004902','盒','6800','76004902');
+
+-- 查询所有数据
+-- select * from compare_product;
+
+-- 商品名称、货号、规格值、大类、中类、小类、库存单位、成本价、销售单位、销售价
+select 
+    pp.default_code 货号,
+    pt.name 产品名称,
+    psv.spec_value 规格值,
+    case 
+        when pc2.name = 'All' then pc1.name        
+        when pc3.name = 'All' then pc2.name
+        else pc3.name        
+    end as  商品大类,
+    case 
+        when pc2.name = 'All' then ''        
+        when pc3.name = 'All' then pc1.name
+        else pc2.name
+    end as  商品中类,
+    case 
+        when pc2.name !='All' and pc3.name != 'All' then pc1.name 
+    end as  商品小类,
+    pu2.name 采购单位,
+    pt.purchasing_price 最新采购单价,
+    pu1.name 销售单位,
+    pt.list_price 售价,
+    sum(sq.qty) 库存数量
+from 
+    product_product pp
+join
+    product_template pt on pt.id = pp.product_tmpl_id
+left join
+    product_specification_values psv on psv.id = pt.product_spec_value_id
+left join
+    product_uom pu1 on pu1.id = pt.uom_id
+left join
+    product_uom pu2 on pu2.id = pt.uom_po_id
+left join
+    product_category pc1 on pc1.id = pt.categ_id
+left join
+    product_category pc2 on pc2.id = pc1.parent_id
+left join
+    product_category pc3 on pc3.id = pc2.parent_id
+left join
+    compare_product cp on cp.old_bn = pp.default_code
+left join
+    stock_quant sq on pp.id = sq.product_id
+where
+    cp.old_bn is null and pc2.name = '快消品'
+group by pp.default_code,pt.name,psv.spec_value,pc2.name,pc1.name, pc3.name,pu2.name,pt.purchasing_price,pu1.name,pt.list_price
