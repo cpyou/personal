@@ -1,0 +1,20 @@
+-- 订单渠道是EC广佛网络订单sql.txt
+-- 条件（订单渠道是EC，省份是广东省，城市：广州市、佛山市）
+
+select
+    wo.web_name as 订单号,
+    wo.order_date + interval '8 hours' as 销售时间,
+    wo.stock_order + interval '8 hours' as 发货时间,
+    rp.name 客户,         
+    rp2.name 收货人,
+    rp2.city 城市,
+    rcs.name 省份,
+    wo.amount_total 实收总金额
+from web_order wo 
+join res_partner rp on rp.id = wo.partner_id 
+join res_partner rp2 on rp2.id = wo.address_id 
+left join 
+    order_channel oc on wo.order_channel_id = oc.id
+left join
+    res_country_state rcs on rcs.id = rp2.state_id
+where oc.name = 'EC' and rcs.name = '广东省' and rp2.city in ('广州市', '佛山市')

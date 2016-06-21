@@ -1,0 +1,18 @@
+-- 商品报损仓库存信息
+select 
+    pp.default_code 货号,
+    pp.ean13 条码,
+    pt.name 商品名称,
+    sum(sq.qty) 数量,
+    ip.value_float 参考成本价,
+    sl.name 库位名称,
+    sq.location_id 库位id
+from stock_quant sq
+right join product_product pp on pp.id = sq.product_id
+join product_template pt on pt.id = pp.product_tmpl_id
+left join 
+    ir_property ip on pt.id = cast(substring(ip.res_id from 18) as integer) and ip.name='standard_price'
+left join stock_location  sl on sl.id = sq.location_id
+where sl.name like '%报损仓%'
+group by pp.default_code,pt.name,ip.value_float,pp.ean13,sl.name,sq.location_id
+order by sl.name

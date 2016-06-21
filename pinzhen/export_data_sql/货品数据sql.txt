@@ -1,0 +1,63 @@
+-- 货品数据
+-- 货号   产品名称    售价  成本价 最新采购单价  规格值 销售单位    采购单位    是否组合商品  是否称重商品  质保  商品大类    中类  小类  条形码 销项税 进项税
+select 
+    pp.default_code 货号,
+    pt.name 产品名称,
+    pt.list_price 售价,
+    ip.value_float 成本价,
+    pt.purchasing_price 最新采购单价,
+    psv.spec_value 规格值,
+    pu1.name 销售单位,
+    pu2.name 采购单位,
+    case pt.is_products
+        when true then '是'
+        else ''
+    end as 是否组合商品,
+    case pt.is_weight
+        when true then '是'
+        else ''
+    end as 是否组合商品,
+    '' 质保,
+    case 
+        when pc2.name = 'All' then pc1.name        
+        when pc3.name = 'All' then pc2.name
+        else pc3.name        
+    end as  商品大类,
+    case 
+        when pc2.name = 'All' then ''        
+        when pc3.name = 'All' then pc1.name
+        else pc2.name
+    end as  商品中类,
+    case 
+        when pc2.name !='All' and pc3.name != 'All' then pc1.name 
+    end as  商品小类,
+    pp.ean13 条形码,
+    at1.name 销项税,
+    at2.name 进项税
+from
+    product_product pp
+join
+    product_template pt on pt.id = pp.product_tmpl_id
+left join 
+    ir_property ip on pt.id = cast(substring(ip.res_id from 18) as integer) and ip.name='standard_price'
+left join
+    product_specification_values psv on psv.id = pt.product_spec_value_id
+left join
+    product_uom pu1 on pu1.id = pt.uom_id
+left join
+    product_uom pu2 on pu2.id = pt.uom_po_id
+left join
+    product_category pc1 on pc1.id = pt.categ_id
+left join
+    product_category pc2 on pc2.id = pc1.parent_id
+left join
+    product_category pc3 on pc3.id = pc2.parent_id
+left join
+    product_taxes_rel ptr on ptr.prod_id = pt.id
+left join
+    account_tax at1 on at1.id = ptr.tax_id
+left join 
+    product_supplier_taxes_rel pstr on pstr.prod_id = pt.id
+left join
+    account_tax at2 on at2.id = pstr.tax_id
+order by pc2.name,pc1.name

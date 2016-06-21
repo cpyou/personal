@@ -1,0 +1,391 @@
+-- 广佛营销中心大客户未回款订单的明细情况
+
+DROP TABLE IF EXISTS compare_order CASCADE;
+
+-- 创建数据表
+CREATE TABLE compare_order
+(
+    id serial NOT NULL,
+    name character varying -- 销售订单号
+);
+
+-- excel 数据样式： ="insert into compare_order (name)  values('"&A314&"');"
+
+-- 插入数据
+insert into compare_order (name)  values('SO20150902000024');
+insert into compare_order (name)  values('SO20150902000025');
+insert into compare_order (name)  values('SO20150902000027');
+insert into compare_order (name)  values('SO20150902000028');
+insert into compare_order (name)  values('SO20150902000030');
+insert into compare_order (name)  values('SO20150907000045');
+insert into compare_order (name)  values('SO20150908000055');
+insert into compare_order (name)  values('SO20150909000067');
+insert into compare_order (name)  values('SO20150909000074');
+insert into compare_order (name)  values('SO20150910000078');
+insert into compare_order (name)  values('SO20150910000102');
+insert into compare_order (name)  values('SO20150911000122');
+insert into compare_order (name)  values('SO20150913000160');
+insert into compare_order (name)  values('SO20150914000164');
+insert into compare_order (name)  values('SO20150915000177');
+insert into compare_order (name)  values('SO20150915000180');
+insert into compare_order (name)  values('SO20150915000182');
+insert into compare_order (name)  values('SO20150915000192');
+insert into compare_order (name)  values('SO20150916000198');
+insert into compare_order (name)  values('SO20150916000201');
+insert into compare_order (name)  values('SO20150916000202');
+insert into compare_order (name)  values('SO20150916000203');
+insert into compare_order (name)  values('SO20150917000213');
+insert into compare_order (name)  values('SO20150917000215');
+insert into compare_order (name)  values('SO20150917000217');
+insert into compare_order (name)  values('SO20150917000218');
+insert into compare_order (name)  values('SO20150917000226');
+insert into compare_order (name)  values('SO20150918000230');
+insert into compare_order (name)  values('SO20150922000266');
+insert into compare_order (name)  values('SO20150922000272');
+insert into compare_order (name)  values('SO20150922000273');
+insert into compare_order (name)  values('SO20150923000304');
+insert into compare_order (name)  values('SO20150924000309');
+insert into compare_order (name)  values('SO20150924000310');
+insert into compare_order (name)  values('SO20150925000341');
+insert into compare_order (name)  values('SO20150925000346');
+insert into compare_order (name)  values('SO20150925000348');
+insert into compare_order (name)  values('SO20150928000370');
+insert into compare_order (name)  values('SO20150929000379');
+insert into compare_order (name)  values('SO20151008000387');
+insert into compare_order (name)  values('SO20151008000392');
+insert into compare_order (name)  values('SO20151008000396');
+insert into compare_order (name)  values('SO20151013000419');
+insert into compare_order (name)  values('SO20151013000420');
+insert into compare_order (name)  values('SO20151014000432');
+insert into compare_order (name)  values('SO20151017000456');
+insert into compare_order (name)  values('SO20151019000461');
+insert into compare_order (name)  values('SO20151019000462');
+insert into compare_order (name)  values('SO20151019000463');
+insert into compare_order (name)  values('SO20151019000471');
+insert into compare_order (name)  values('SO20151020000479');
+insert into compare_order (name)  values('SO20151022000506');
+insert into compare_order (name)  values('SO20151022000509');
+insert into compare_order (name)  values('SO20151022000510');
+insert into compare_order (name)  values('SO20151023000518');
+insert into compare_order (name)  values('SO20151027000550');
+insert into compare_order (name)  values('SO20151028000568');
+insert into compare_order (name)  values('SO20151031000598');
+insert into compare_order (name)  values('SO20151031000606');
+insert into compare_order (name)  values('SO20151031000607');
+insert into compare_order (name)  values('SO20151101000608');
+insert into compare_order (name)  values('SO20151102000616');
+insert into compare_order (name)  values('SO20151102000620');
+insert into compare_order (name)  values('SO20151103000631');
+insert into compare_order (name)  values('SO20151104000635');
+insert into compare_order (name)  values('SO20151106000654');
+insert into compare_order (name)  values('SO20151110000692');
+insert into compare_order (name)  values('SO20151111000699');
+insert into compare_order (name)  values('SO20151111000701');
+insert into compare_order (name)  values('SO20151112000711');
+insert into compare_order (name)  values('SO20151112000712');
+insert into compare_order (name)  values('SO20151112000713');
+insert into compare_order (name)  values('SO20151112000717');
+insert into compare_order (name)  values('SO20151113000721');
+insert into compare_order (name)  values('SO20151114000744');
+insert into compare_order (name)  values('SO20151116000746');
+insert into compare_order (name)  values('SO20151116000747');
+insert into compare_order (name)  values('SO20151116000750');
+insert into compare_order (name)  values('SO20151118000773');
+insert into compare_order (name)  values('SO20151119000782');
+insert into compare_order (name)  values('SO20151119000784');
+insert into compare_order (name)  values('SO20151119000787');
+insert into compare_order (name)  values('SO20151119000790');
+insert into compare_order (name)  values('SO20151120000809');
+insert into compare_order (name)  values('SO20151121000814');
+insert into compare_order (name)  values('SO20151123000815');
+insert into compare_order (name)  values('SO20151125000843');
+insert into compare_order (name)  values('SO20151125000847');
+insert into compare_order (name)  values('SO20151125000849');
+insert into compare_order (name)  values('SO20151125000850');
+insert into compare_order (name)  values('SO20151127000877');
+insert into compare_order (name)  values('SO20151128000895');
+insert into compare_order (name)  values('SO20151130000902');
+insert into compare_order (name)  values('SO20151130000903');
+insert into compare_order (name)  values('SO20151201000917');
+insert into compare_order (name)  values('SO20151201000925');
+insert into compare_order (name)  values('SO20151201000927');
+insert into compare_order (name)  values('SO20151201000928');
+insert into compare_order (name)  values('SO20151202000945');
+insert into compare_order (name)  values('SO20151209001014');
+insert into compare_order (name)  values('SO20151209001018');
+insert into compare_order (name)  values('SO20151209001020');
+insert into compare_order (name)  values('SO20151211001043');
+insert into compare_order (name)  values('SO20151211001052');
+insert into compare_order (name)  values('SO20151211001055');
+insert into compare_order (name)  values('SO20151211001059');
+insert into compare_order (name)  values('SO20151212001063');
+insert into compare_order (name)  values('SO20151212001068');
+insert into compare_order (name)  values('SO20151212001072');
+insert into compare_order (name)  values('SO20151215001101');
+insert into compare_order (name)  values('SO20151215001102');
+insert into compare_order (name)  values('SO20151215001103');
+insert into compare_order (name)  values('SO20151216001113');
+insert into compare_order (name)  values('SO20151216001122');
+insert into compare_order (name)  values('SO20151216001125');
+insert into compare_order (name)  values('SO20151217001134');
+insert into compare_order (name)  values('SO20151217001146');
+insert into compare_order (name)  values('SO20151217001147');
+insert into compare_order (name)  values('SO20151218001153');
+insert into compare_order (name)  values('SO20151218001159');
+insert into compare_order (name)  values('SO20151218001166');
+insert into compare_order (name)  values('SO20151218001167');
+insert into compare_order (name)  values('SO20151219001172');
+insert into compare_order (name)  values('SO20151219001173');
+insert into compare_order (name)  values('SO20151219001194');
+insert into compare_order (name)  values('SO20151222001250');
+insert into compare_order (name)  values('SO20151223001375');
+insert into compare_order (name)  values('SO20151224001410');
+insert into compare_order (name)  values('SO20151224001412');
+insert into compare_order (name)  values('SO20151224001413');
+insert into compare_order (name)  values('SO20151226001469');
+insert into compare_order (name)  values('SO20151226001487');
+insert into compare_order (name)  values('SO20151231001628');
+insert into compare_order (name)  values('SO20151231001629');
+insert into compare_order (name)  values('SO20160102001678');
+insert into compare_order (name)  values('SO20160103001682');
+insert into compare_order (name)  values('SO20160105001704');
+insert into compare_order (name)  values('SO20160105001705');
+insert into compare_order (name)  values('SO20160105001706');
+insert into compare_order (name)  values('SO20160105001708');
+insert into compare_order (name)  values('SO20160107001733');
+insert into compare_order (name)  values('SO20160108001767');
+insert into compare_order (name)  values('SO20160108001768');
+insert into compare_order (name)  values('SO20160110001781');
+insert into compare_order (name)  values('SO20160113001812');
+insert into compare_order (name)  values('SO20160114001826');
+insert into compare_order (name)  values('SO20160114001842');
+insert into compare_order (name)  values('SO20160114001843');
+insert into compare_order (name)  values('SO20160114001844');
+insert into compare_order (name)  values('SO20160115001849');
+insert into compare_order (name)  values('SO20160115001851');
+insert into compare_order (name)  values('SO20160115001852');
+insert into compare_order (name)  values('SO20160115001853');
+insert into compare_order (name)  values('SO20160115001854');
+insert into compare_order (name)  values('SO20160115001855');
+insert into compare_order (name)  values('SO20160115001856');
+insert into compare_order (name)  values('SO20160115001858');
+insert into compare_order (name)  values('SO20160115001859');
+insert into compare_order (name)  values('SO20160115001870');
+insert into compare_order (name)  values('SO20160115001875');
+insert into compare_order (name)  values('SO20160115001877');
+insert into compare_order (name)  values('SO20160116001879');
+insert into compare_order (name)  values('SO20160116001880');
+insert into compare_order (name)  values('SO20160116001883');
+insert into compare_order (name)  values('SO20160116001900');
+insert into compare_order (name)  values('SO20160118001915');
+insert into compare_order (name)  values('SO20160119001941');
+insert into compare_order (name)  values('SO20160119001942');
+insert into compare_order (name)  values('SO20160119001943');
+insert into compare_order (name)  values('SO20160119001944');
+insert into compare_order (name)  values('SO20160119001972');
+insert into compare_order (name)  values('SO20160120002006');
+insert into compare_order (name)  values('SO20160121002027');
+insert into compare_order (name)  values('SO20160122002047');
+insert into compare_order (name)  values('SO20160122002077');
+insert into compare_order (name)  values('SO20160122002078');
+insert into compare_order (name)  values('SO20160122002079');
+insert into compare_order (name)  values('SO20160123002122');
+insert into compare_order (name)  values('SO20160123002124');
+insert into compare_order (name)  values('SO20160125002186');
+insert into compare_order (name)  values('SO20160125002188');
+insert into compare_order (name)  values('SO20160125002190');
+insert into compare_order (name)  values('SO20160125002195');
+insert into compare_order (name)  values('SO20160126002217');
+insert into compare_order (name)  values('SO20160126002240');
+insert into compare_order (name)  values('SO20160126002243');
+insert into compare_order (name)  values('SO20160126002244');
+insert into compare_order (name)  values('SO20160126002245');
+insert into compare_order (name)  values('SO20160126002249');
+insert into compare_order (name)  values('SO20160126002251');
+insert into compare_order (name)  values('SO20160126002252');
+insert into compare_order (name)  values('SO20160127002276');
+insert into compare_order (name)  values('SO20160128002324');
+insert into compare_order (name)  values('SO20160128002347');
+insert into compare_order (name)  values('SO20160128002350');
+insert into compare_order (name)  values('SO20160128002353');
+insert into compare_order (name)  values('SO20160128002354');
+insert into compare_order (name)  values('SO20160128002356');
+insert into compare_order (name)  values('SO20160129002376');
+insert into compare_order (name)  values('SO20160129002386');
+insert into compare_order (name)  values('SO20160130002461');
+insert into compare_order (name)  values('SO20160130002462');
+insert into compare_order (name)  values('SO20160130002480');
+insert into compare_order (name)  values('SO20160130002482');
+insert into compare_order (name)  values('SO20160130002493');
+insert into compare_order (name)  values('SO20160130002497');
+insert into compare_order (name)  values('SO20160130002499');
+insert into compare_order (name)  values('SO20160130002501');
+insert into compare_order (name)  values('SO20160131002522');
+insert into compare_order (name)  values('SO20160131002529');
+insert into compare_order (name)  values('SO20160201002561');
+insert into compare_order (name)  values('SO20160201002563');
+insert into compare_order (name)  values('SO20160201002564');
+insert into compare_order (name)  values('SO20160202002568');
+insert into compare_order (name)  values('SO20160202002570');
+insert into compare_order (name)  values('SO20160202002581');
+insert into compare_order (name)  values('SO20160202002586');
+insert into compare_order (name)  values('SO20160202002587');
+insert into compare_order (name)  values('SO20160202002588');
+insert into compare_order (name)  values('SO20160203002589');
+insert into compare_order (name)  values('SO20160203002594');
+insert into compare_order (name)  values('SO20160203002596');
+insert into compare_order (name)  values('SO20160204002602');
+insert into compare_order (name)  values('SO20160204002606');
+insert into compare_order (name)  values('SO20160204002607');
+insert into compare_order (name)  values('SO20160204002612');
+insert into compare_order (name)  values('SO20160212002626');
+insert into compare_order (name)  values('SO20160215002644');
+insert into compare_order (name)  values('SO20160216002649');
+insert into compare_order (name)  values('SO20160217002686');
+insert into compare_order (name)  values('SO20160217002687');
+insert into compare_order (name)  values('SO20160219002696');
+insert into compare_order (name)  values('SO20160219002697');
+insert into compare_order (name)  values('SO20160219002698');
+insert into compare_order (name)  values('SO20160219002702');
+insert into compare_order (name)  values('SO20160220002717');
+insert into compare_order (name)  values('SO20160220002718');
+insert into compare_order (name)  values('SO20160220002728');
+insert into compare_order (name)  values('SO20160220002729');
+insert into compare_order (name)  values('SO20160222002734');
+insert into compare_order (name)  values('SO20160222002735');
+insert into compare_order (name)  values('SO20160222002736');
+insert into compare_order (name)  values('SO20160222002744');
+insert into compare_order (name)  values('SO20160222002749');
+insert into compare_order (name)  values('SO20160222002751');
+insert into compare_order (name)  values('SO20160223002760');
+insert into compare_order (name)  values('SO20160223002761');
+insert into compare_order (name)  values('SO20160223002762');
+insert into compare_order (name)  values('SO20160225002773');
+insert into compare_order (name)  values('SO20160225002775');
+insert into compare_order (name)  values('SO20160225002777');
+insert into compare_order (name)  values('SO20160225002778');
+insert into compare_order (name)  values('SO20160225002779');
+insert into compare_order (name)  values('SO20160225002781');
+insert into compare_order (name)  values('SO20160225002782');
+insert into compare_order (name)  values('SO20160225002787');
+insert into compare_order (name)  values('SO20160225002789');
+insert into compare_order (name)  values('SO20160225002791');
+insert into compare_order (name)  values('SO20160226002799');
+insert into compare_order (name)  values('SO20160227002810');
+insert into compare_order (name)  values('SO20160227002811');
+insert into compare_order (name)  values('SO20160229002820');
+insert into compare_order (name)  values('SO20160229002823');
+insert into compare_order (name)  values('SO20160301002824');
+insert into compare_order (name)  values('SO20160301002827');
+insert into compare_order (name)  values('SO20160301002828');
+insert into compare_order (name)  values('SO20160301002829');
+insert into compare_order (name)  values('SO20160302002839');
+insert into compare_order (name)  values('SO20160302002843');
+insert into compare_order (name)  values('SO20160302002845');
+insert into compare_order (name)  values('SO20160303002852');
+insert into compare_order (name)  values('SO20160304002855');
+insert into compare_order (name)  values('SO20160304002856');
+insert into compare_order (name)  values('SO20160304002857');
+insert into compare_order (name)  values('SO20160304002859');
+insert into compare_order (name)  values('SO20160304002860');
+insert into compare_order (name)  values('SO20160304002862');
+insert into compare_order (name)  values('SO20160304002863');
+insert into compare_order (name)  values('SO20160304002864');
+insert into compare_order (name)  values('SO20160304002865');
+insert into compare_order (name)  values('SO20160307002875');
+insert into compare_order (name)  values('SO20160307002876');
+insert into compare_order (name)  values('SO20160307002877');
+insert into compare_order (name)  values('SO20160307002878');
+insert into compare_order (name)  values('SO20160307002879');
+insert into compare_order (name)  values('SO20160307002880');
+insert into compare_order (name)  values('SO20160307002881');
+insert into compare_order (name)  values('SO20160307002886');
+insert into compare_order (name)  values('SO20160307002887');
+insert into compare_order (name)  values('SO20160308002893');
+insert into compare_order (name)  values('SO20160308002894');
+insert into compare_order (name)  values('SO20160308002895');
+insert into compare_order (name)  values('SO20160308002903');
+insert into compare_order (name)  values('SO20160310002914');
+insert into compare_order (name)  values('SO20160310002915');
+insert into compare_order (name)  values('SO20160314002944');
+insert into compare_order (name)  values('SO20160314002945');
+insert into compare_order (name)  values('SO20160314002946');
+insert into compare_order (name)  values('SO20160314002947');
+insert into compare_order (name)  values('SO20160314002948');
+insert into compare_order (name)  values('SO20160314002949');
+insert into compare_order (name)  values('SO20160316002960');
+insert into compare_order (name)  values('SO20160316002961');
+insert into compare_order (name)  values('SO20160316002962');
+insert into compare_order (name)  values('SO20160316002963');
+insert into compare_order (name)  values('SO20160316002964');
+insert into compare_order (name)  values('SO20160316002965');
+insert into compare_order (name)  values('SO20160316002969');
+insert into compare_order (name)  values('SO20160317002975');
+insert into compare_order (name)  values('SO20160318002980');
+insert into compare_order (name)  values('SO20160318002981');
+insert into compare_order (name)  values('SO20160318002983');
+insert into compare_order (name)  values('SO20160318003000');
+
+select
+    co.name as 需导出的订单号,
+     so.name as 订单号,
+     so.date_order + interval '8 hours' as 销售时间,
+     so.stock_order + interval '8 hours' as 发货时间,
+     sw.name as 出货仓库,
+     rp.name as 业务员,
+     rp1.name as 客户,
+     rp1.street 详细地址,            
+     rp1.city 城市,
+     so.client_order_ref 参考说明,
+     pp.default_code as 货号,
+     eg.name as 商品名称,
+     psv.spec_value as 规格值,
+     ps.spec_memo as 规格,
+     sol.product_uom_qty as 数量,
+     sol.price_unit as 销售单价,
+     so.amount_total as 实收金额,
+     case so.pz_order_type
+         when 'p2b' then '国际采购p2b'
+         when 'office' then '办公室接待'
+         when 'VIP' then '大客户'
+         when 'sale_raw' then '营销领用'
+         when 'other' then '其他'
+         when 'gf_sale' then '广佛营销中心'
+     end as 订单来源,
+     case so.state   
+         when 'draft' then '报价单草稿'  
+         when 'sent' then '报价单发送'
+         when 'cancel' then '已取消'
+         when 'suspend' then '挂起'
+         when 'progress' then '销售订单'
+         when 'manual' then '销售待开票'
+         when 'shiping_except' then '送货异常'
+         when 'invoice' then '发票异常'
+         when 'done' then '完成'
+     end as 状态
+ from
+     sale_order_line sol
+ join
+     sale_order so on sol.order_id = so.id
+ join
+     stock_warehouse sw on so.warehouse_id = sw.id
+ join
+     product_product  pp on sol.product_id = pp.id
+ join
+     product_template  pt on pp.product_tmpl_id = pt.id
+ join
+     product_category pc on pt.categ_id = pc.id
+ left join
+     product_category pc2 on pc.parent_id = pc2.id
+ join
+     ec_goods eg on pt.good = eg.id
+ join
+     product_specification_values psv on pt.product_spec_value_id = psv.id
+ left join
+     product_specification ps on pt.product_spec_id = ps.id
+ left join 
+     res_users ru on so.user_id = ru.id
+ left JOIN res_partner rp on rp.id = ru.partner_id
+ left JOIN res_partner rp1 on rp1.id = so.partner_id
+ right join compare_order co on co.name = so.name
+ order by so.stock_order
