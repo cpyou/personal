@@ -1,0 +1,64 @@
+-- 销售订单商品明细报表
+
+select
+     sol.id as id,
+     so.name as 订单号,
+     so.date_order + interval '8 hours' as 销售时间,
+     so.stock_order + interval '8 hours' as 发货时间,
+     sw.name as 出货仓库,
+     rp.name as 业务员,
+     pp.default_code as 货号,
+     eg.name as 商品名称,
+     psv.spec_value as 规格值,
+     ps.spec_memo as 规格,
+     sol.product_uom_qty as 数量,
+     sol.price_unit as 销售单价,
+     so.amount_total as 实收金额,
+     case so.pz_order_type
+         when 'p2b' then '国际采购p2b'
+         when 'office' then '办公室接待'
+         when 'VIP' then '大客户'
+         when 'sale_raw' then '营销领用'
+         when 'other' then '其他'
+         when 'gf_sale' then '广佛营销中心'
+     end as 订单来源,
+     case so.state   
+         when 'draft' then '报价单草稿'  
+         when 'sent' then '报价单发送'
+         when 'cancel' then '已取消'
+         when 'suspend' then '挂起'
+         when 'progress' then '销售订单'
+         when 'manual' then '销售待开票'
+         when 'shiping_except' then '送货异常'
+         when 'invoice' then '发票异常'
+         when 'done' then '完成'
+     end as 状态,            
+     pc.name as category_little,
+     pc2.name as category
+ from
+     sale_order_line sol
+ join
+     sale_order so on sol.order_id = so.id
+ join
+     stock_warehouse sw on so.warehouse_id = sw.id
+ join
+     product_product  pp on sol.product_id = pp.id
+ join
+     product_template  pt on pp.product_tmpl_id = pt.id
+ join
+     product_category pc on pt.categ_id = pc.id
+ left join
+     product_category pc2 on pc.parent_id = pc2.id
+ join
+     ec_goods eg on pt.good = eg.id
+ join
+     product_specification_values psv on pt.product_spec_value_id = psv.id
+ left join
+     product_specification ps on pt.product_spec_id = ps.id
+ left join 
+     res_users ru on so.user_id = ru.id
+ left JOIN res_partner rp on rp.id = ru.partner_id
+ where so.state not in('cancel','draft')
+     and so.stock_order >= timestamp '2016-04-01 00:00:00' - interval '8 hours'
+     and so.stock_order < timestamp '2016-05-01 00:00:00' - interval '8 hours'
+ order by so.stock_order

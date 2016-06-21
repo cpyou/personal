@@ -1,0 +1,12 @@
+-- 有改价权限的用户sql.txt
+
+select 
+     rp.name 用户名
+from ir_model im
+join ir_model_access ima on ima.model_id =  im.id
+join res_groups rg on rg.id = ima.group_id
+join res_groups_users_rel rgur on rgur.gid = rg.id
+join res_users ru on ru.id = rgur.uid
+join res_partner rp on rp.id = ru.partner_id
+where model='product.template' and ima.perm_write = TRUE
+group by rp.name
