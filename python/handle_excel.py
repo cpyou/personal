@@ -50,7 +50,7 @@ for i in l9:
     worksheet.write(row, 3, i + categories[i])
 for i in list(set(l7).difference(set(l9_parent))):
     row += 1
-    worksheet.write(row, 0, i + categories[i[:3]])
-    worksheet.write(row, 1, i + categories[i[:5]])
-    worksheet.write(row, 2, i + categories[i[:7]])
+    worksheet.write(row, 0, i[:3] + categories[i[:3]])
+    worksheet.write(row, 1, i[:5] + categories[i[:5]])
+    worksheet.write(row, 2, i[:7] + categories[i[:7]])
 workbook.close()
