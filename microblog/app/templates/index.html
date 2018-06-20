@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <h1>Hi, {{user.nickname}}!</h1>
+        {% for post in posts %}
+        <div class="blue_block"></div>
+        <div class="red_block"></div>   
+        {% endfor %}
+    </div>
+    <div class="bottom">
+        {% for post in posts[:200] %}
+        <div class="black_block"></div>
+        <div class="block"></div>
+        {% endfor %}
+    </div>
+{% endblock %}
