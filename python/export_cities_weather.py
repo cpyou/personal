@@ -2,11 +2,11 @@
 # =================================================
 #      language       ： Python3.7
 #      IDLE           :  pycharm
-#      Library needed ： re,requests.urlib
 #      Date           :  17/04/2019
 # =================================================
-import re
 import datetime
+import os
+import re
 import requests
 import xlsxwriter
 from urllib.parse import quote
@@ -63,35 +63,75 @@ class Weather2345(object):
         return result
 
 
+header_format = {
+    'bold':  True,  # 字体加粗
+    'border': 1,  # 单元格边框宽度
+    'align': 'left',  # 水平对齐方式
+    'valign': 'vcenter',  # 垂直对齐方式
+    'fg_color': '#F4B084',  # 单元格背景颜色
+    'text_wrap': True,  # 是否自动换行
+}
+
+default_format = {
+    'bold':  False,  # 一般字体
+    'border': 1,  # 单元格边框宽度
+    'align': 'left',  # 水平对齐方式
+    'valign': 'vcenter',  # 垂直对齐方式
+    'fg_color': '#F4B084',  # 单元格背景颜色
+    'text_wrap': True,  # 是否自动换行
+}
+
+city_format = {
+    'bold':  False,  # 一般字体
+    'border': 1,  # 单元格边框宽度
+    'align': 'center',  # 水平对齐方式
+    'valign': 'vcenter',  # 垂直对齐方式
+    'fg_color': '#F4B084',  # 单元格背景颜色
+    'text_wrap': True,  # 是否自动换行
+}
+
+
 def write_data_2_xlsx(filename=None, cities_weather_data=None):
     filename = filename or 'test.xlsx'
     cities_weather_data = cities_weather_data or []
     wbk = xlsxwriter.Workbook(filename=filename)
+    header_style = wbk.add_format(header_format)
+    default_style = wbk.add_format(default_format)
+    city_style = wbk.add_format(city_format)
     sheet = wbk.add_worksheet('sheet1')
     columns = [f'{item[0]} {item[1]}' for item in cities_weather_data[0][1]]
+    sheet.set_column(1, len(columns), 13)
 
-    sheet.write_row(0, 1, columns)
+    sheet.write_row(0, 1, columns, header_style)
     row = 1
     height = 3
     for city_weather in cities_weather_data:
         weather = city_weather[1]
         col = 0
         last_row = row + height - 1
-        sheet.merge_range(first_row=row, last_row=last_row, first_col=col, last_col=col, data=city_weather[0])
+        sheet.merge_range(first_row=row, last_row=last_row,
+                          first_col=col, last_col=col,
+                          data=city_weather[0], cell_format=city_style)
         for item in weather:
             d = [item[2], f'{item[3]}~{item[4]}', item[5]]
             col += 1
-            sheet.write_column(row, col, d)
+            sheet.write_column(row, col, d, default_style)
         row += height
     wbk.close()
 
 
-if __name__ == '__main__':
+def generate_cities_weather_forecast_xlsx():
     cities = ['上海']
     data = []
     for city in cities:
         result = Weather2345(city).parsed_data()
         data.append((city, result))
 
-    xlsx_name = f'~/Desktop/天气预报-{str(datetime.date.today())}.xlsx'
+    home_path = os.path.expanduser('~')
+    xlsx_name = f'{home_path}/Desktop/天气预报-{str(datetime.date.today())}.xlsx'
     write_data_2_xlsx(filename=xlsx_name, cities_weather_data=data)
+    return xlsx_name
+
+
+if __name__ == '__main__':
+    generate_cities_weather_forecast_xlsx()
