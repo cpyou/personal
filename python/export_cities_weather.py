@@ -48,7 +48,7 @@ class Weather2345(object):
 
     def parsed_data(self):
         text = self.get_html()
-        r = re.compile(r'<p><strong>([^<]+)\(<font.*?>([^<]+)</font>\).*?<b>([^<]+)</b><i><font class="blue">' \
+        r = re.compile(r'<p>.*?<strong>([^<]+)\(<font.*?>([^<]+)</font>\).*?<b>([^<]+)</b>.*?<i><font class="blue">' \
                        '([^<]+)</font>～<font class="red">([^<]+)</font><br.*?((?<=>)[^<]+)</i>', re.M | re.S)
         result = re.findall(r, text)
         fbsj = 'From:2345天气预报'
@@ -121,7 +121,7 @@ def write_data_2_xlsx(filename=None, cities_weather_data=None):
 
 
 def generate_cities_weather_forecast_xlsx():
-    cities = ['上海']
+    cities = ['上海', '南京', '杭州', '宁波', '金华', '青岛', '徐州', '济南', '合肥', '苏州', '无锡', '镇江', '马鞍山', '南通', '绍兴', '芜湖']
     data = []
     for city in cities:
         result = Weather2345(city).parsed_data()
