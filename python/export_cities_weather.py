@@ -54,13 +54,16 @@ class Weather2345(object):
         fbsj = 'From:2345天气预报'
         print('  -----' + self.city + '天气预报' + '(未来' + str(len(result)) + '天）' + fbsj + '-----')
         print('-' * 60)
+        format_result = []
         for p in result:
+            p = [item.strip() for item in p]
+            format_result.append(p)
             p0, p1, p2, p3, p4, p5 = p
             print("  {0:^6}\t {1:^2}\t{2:{6}<6}\t{3:{6}<4}\t{4:{6}^3}\t{5:{6}<6}".format(p0, p1, p2, p3, p4,
                                                                                          p5.replace(' ', ''),
                                                                                          chr(12288)))
         print('-' * 60)
-        return result
+        return format_result
 
 
 header_format = {
