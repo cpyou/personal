@@ -6,6 +6,7 @@ plt.rc("font", family='Songti SC')  # 解决中文不显示问题
 df = pd.read_excel('/Users/chenpuyu/Documents/个人/宝宝/宝宝记录.xlsx',
                    sheet_name=1, index_col='日期')
 
+df.index = df.index.date
 dairy_df = df[['总奶量', '母乳量', '配方奶']]
 
 dairy_df.plot()
