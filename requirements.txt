@@ -1,7 +1,8 @@
 httpx==0.24.0
 pandas==2.0.3
-requests==2.23.0
+requests==2.31.0
 xlsxwriter==1.2.8
 pdfkit==0.6.1
+beautifulsoup4==4.12.2
 scrapy
 selenium
