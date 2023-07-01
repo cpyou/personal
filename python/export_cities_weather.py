@@ -41,15 +41,17 @@ class Weather2345(object):
         try:
             r = requests.get(url=url, headers=self.query_headers)
             r.raise_for_status()
-            r.encoding = 'GBK'
+            # r.encoding = 'GBK'
             return r.text
         except requests.ConnectionError as e:
             print('Error')
 
     def parsed_data(self):
         text = self.get_html()
-        r = re.compile(r'<p>.*?<strong>([^<]+)\(<font.*?>([^<]+)</font>\).*?<b>([^<]+)</b>.*?<i><font class="blue">' \
-                       '([^<]+)</font>～<font class="red">([^<]+)</font><br.*?((?<=>)[^<]+)</i>', re.M | re.S)
+        # r = re.compile(r'<p>.*?<strong>([^<]+)\(<font.*?>([^<]+)</font>\).*?<b>([^<]+)</b>.*?<i><font class="blue">' \
+        #                '([^<]+)</font>～<font class="red">([^<]+)</font><br.*?((?<=>)[^<]+)</i>', re.M | re.S)
+        re_str = r'<em>([^<]+)<em.*?<em>([^<]+)</em>.*?<font>([^<]+)</font>.*?<b>([^<]+)</b>.*?<b>([^<]+)</b>.*?<span.*?>([^<]+)</span>'
+        r = re.compile(re_str, re.M | re.S)
         result = re.findall(r, text)
         fbsj = 'From:2345天气预报'
         print('  -----' + self.city + '天气预报' + '(未来' + str(len(result)) + '天）' + fbsj + '-----')
