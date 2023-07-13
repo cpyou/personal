@@ -91,7 +91,7 @@ header_format = {
     'border': 1,  # 单元格边框宽度
     'align': 'left',  # 水平对齐方式
     'valign': 'vcenter',  # 垂直对齐方式
-    'fg_color': '#cccccc',  # 单元格浅灰色
+    'fg_color': '#c1d9f3',  # 单元格颜色
     'text_wrap': True,  # 是否自动换行
 }
 
@@ -109,7 +109,7 @@ default_format1 = {
     'border': 1,  # 单元格边框宽度
     'align': 'left',  # 水平对齐方式
     'valign': 'vcenter',  # 垂直对齐方式
-    'fg_color': '#DCDCDC',  # 单元格钢蓝浅色
+    'fg_color': '#eff5fb',  # 单元格浅蓝
     'text_wrap': True,  # 是否自动换行
 }
 
@@ -184,28 +184,29 @@ class SmtpEmail(object):
         return True
 
 
-def main(write_file=False):
+def main(write_file=False, send_email=True):
     cities = ['上海', '南京', '杭州', '宁波', '金华', '青岛', '徐州', '济南', '合肥', '苏州', '无锡', '镇江', '马鞍山', '南通', '绍兴', '芜湖']
     data = []
     for city in cities:
         result = Weather2345(city).parsed_data()
         data.append((city, result))
 
-    email_host = 'smtp.qq.com'
-    from_addr = ''  # 邮箱地址
-    password = ''  # 授权码
-    to_addrs = []  # 收件地址列表
+    if send_email:
+        email_host = 'smtp.qq.com'
+        from_addr = ''  # 邮箱地址
+        password = ''  # 授权码
+        to_addrs = []  # 收件地址列表
 
-    subject = f'【天气预报】{date.today()}'
-    content = f'【天气预报】{date.today()}'
-    excel_io = BytesIO()
-    wbk = xlsxwriter.Workbook(excel_io, {'in_memory': True})
-    write_data_2_workbook(wbk, cities_weather_data=data)
-    wbk.close()
-    excel_io.seek(0)
-    atts = [(f'天气预报{date.today()}.xlsx', excel_io.read())]
-    smtp_email = SmtpEmail(email_host, from_addr, password)
-    smtp_email.send_email(to_addrs=to_addrs, subject=subject, content=content, atts=atts)
+        subject = f'【天气预报】{date.today()}'
+        content = f'【天气预报】{date.today()}'
+        excel_io = BytesIO()
+        wbk = xlsxwriter.Workbook(excel_io, {'in_memory': True})
+        write_data_2_workbook(wbk, cities_weather_data=data)
+        wbk.close()
+        excel_io.seek(0)
+        atts = [(f'天气预报{date.today()}.xlsx', excel_io.read())]
+        smtp_email = SmtpEmail(email_host, from_addr, password)
+        smtp_email.send_email(to_addrs=to_addrs, subject=subject, content=content, atts=atts)
 
     # 写本地文件
     if write_file:
